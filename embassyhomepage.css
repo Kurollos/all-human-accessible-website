@@ -49,6 +49,19 @@ header nav ul li a:hover {
   color: #0077cc;
 }
 
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+    color: #f9f9f9;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
 /* Hero afbeelding bovenaan */
 .hero {
   background: url('https://walksinamsterdam.nl/wp-content/uploads/2024/08/embassy-of-the-free-mind-Amsterdam.jpg') center/cover no-repeat;
@@ -240,3 +253,22 @@ footer input[type="email"] {
     flex: 1 1 100%;
   }
 }
+
+/* Responsive */
+@media (min-width: 481px) {
+  nav {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  nav button {
+    width: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  section img {
+    width: 70%;
+  }
+}
+
