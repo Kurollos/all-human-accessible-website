@@ -1,5 +1,4 @@
- 
-  /* ALGEMENE BASIS */
+/* Algemene reset en basis */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,19 +8,18 @@
 
 body {
   line-height: 1.6;
-  background-color: #FFD700; /* Goudkleurige achtergrond */
+  background-color: #FFD700;
   color: #333;
 }
 
+/* Container max-width */
 main, footer, header {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-
-
-/* HEADER */
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -45,107 +43,119 @@ header nav ul li a {
   text-decoration: none;
   color: #f9f9f9;
   font-weight: bold;
-  transition: color 0.3s;
 }
 
 header nav ul li a:hover {
   color: #0077cc;
 }
 
-/* BOOK CATALOGUS */
-.book-catalog {
-  max-width: 1200px;
-  margin: 4em auto;
-  padding: 0 20px;
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+    color: #f9f9f9;
 }
 
-.book-catalog h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #002646;
-  font-size: 2rem;
+input,
+label {
+  margin: 0.4rem 0;
 }
 
-/* Grid voor de boeken */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 30px;
+/* Hero afbeelding bovenaan */
+.hero {
+  background: url('https://walksinamsterdam.nl/wp-content/uploads/2024/08/embassy-of-the-free-mind-Amsterdam.jpg') center/cover no-repeat;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
 }
 
-/* Boek-kaarten */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slideAnimation 12s infinite;
+}
+
+/* Elke afbeelding start op een ander tijdstip */
+.slideshow img:nth-child(1) {
+  animation-delay: 0s;
+}
+.slideshow img:nth-child(2) {
+  animation-delay: 4s;
+}
+.slideshow img:nth-child(3) {
+  animation-delay: 8s;
+}
+
+/* Animatie */
+@keyframes slideAnimation {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  33% { opacity: 1; }
+  41% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* Cards container */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* Kaarten */
 .card {
   background-color: #fff;
-  border: 2px solid #002646;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
+  border-radius: 12px;
   overflow: hidden;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, basis */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
-/* Header van de kaart */
-.card header {
-  background-color: #002646;
-  color: #fff;
-  padding: 10px;
+.cards-container h2 {
+  width: 100%;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.card header h3 {
-  margin-bottom: 5px;
-  font-size: 1.1rem;
-}
-
-.card header p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-/* Afbeelding */
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-/* Details-sectie */
-.card details {
-  padding: 15px;
-  background-color: #fafafa;
-}
-
-.card summary {
-  font-weight: bold;
-  cursor: pointer;
-  color: #002646;
-  margin-bottom: 10px;
-}
-
-.card details p {
-  font-size: 0.9rem;
-  margin: 5px 0;
-}
-
-/* Link naar bron */
-.card a {
-  color: #0077cc;
-  text-decoration: none;
-}
-
-.card a:hover {
-  text-decoration: underline;
-}
-
-
-/* FOOTER */
+/* Footer */
 footer {
-  background-color: #002646;
+  background-color: #002646;;
   color: #fff;
   padding: 40px 20px;
   display: flex;
@@ -164,7 +174,6 @@ footer ul {
 footer ul li a {
   text-decoration: none;
   color: #fff;
-  transition: color 0.3s;
 }
 
 footer ul li a:hover {
@@ -218,7 +227,7 @@ footer input[type="email"] {
   opacity: 0.8;
 }
 
-/* RESPONSIVE ONTWERP */
+/* Media Queries voor mobiel */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -230,8 +239,9 @@ footer input[type="email"] {
     gap: 10px;
   }
 
-  .book-catalog {
-    margin: 2em auto;
+  .cards-container {
+    flex-direction: column;
+    padding: 20px 0;
   }
 
   footer {
@@ -243,3 +253,22 @@ footer input[type="email"] {
     flex: 1 1 100%;
   }
 }
+
+/* Responsive */
+@media (min-width: 481px) {
+  nav {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  nav button {
+    width: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  section img {
+    width: 70%;
+  }
+}
+
